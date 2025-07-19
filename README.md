@@ -1,135 +1,167 @@
-# Turborepo starter
+<h1 align="center">💬 Scalable Chat Application</h1>
 
-This Turborepo starter is maintained by the Turborepo core team.
+<p align="center">
+  <b>A production-ready, real-time messaging app built with a modern microservice-first architecture.</b><br/>
+  Featuring Next.js 15, Kafka, Redis, PostgreSQL, WebSockets, and Turborepo.
+</p>
 
-## Using this example
+<br/>
 
-Run the following command:
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js" />
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react" />
+  <img src="https://img.shields.io/badge/Kafka-JS-231F20?style=for-the-badge&logo=apachekafka" />
+  <img src="https://img.shields.io/badge/Redis-PubSub-DC382D?style=for-the-badge&logo=redis" />
+  <img src="https://img.shields.io/badge/PostgreSQL-DB-336791?style=for-the-badge&logo=postgresql" />
+  <img src="https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma" />
+  <img src="https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwindcss" />
+  <img src="https://img.shields.io/badge/TypeScript-Typed-3178C6?style=for-the-badge&logo=typescript" />
+</p>
 
-```sh
-npx create-turbo@latest
+---
+
+## 🖼️ UI Preview
+
+<p align="center">
+  <img width="1901" height="980" alt="image" src="https://github.com/user-attachments/assets/ed72f2ff-5881-4d1e-aa9a-528d1967e632" />
+
+  <br />
+  <i>⚡ Modern dark-themed chat interface with real-time updates</i>
+</p>
+
+---
+
+## 🧠 Key Features
+
+- 🔌 Real-time messaging with **Socket.IO** & **Redis Pub/Sub**
+- 📨 Message queuing using **Kafka** for durability
+- 💾 Persistent storage via **PostgreSQL** + **Prisma ORM**
+- 🚀 Frontend with **Next.js App Router**, **React 19**, and **Tailwind**
+- 🧱 Modular monorepo setup using **Turborepo**
+- 🐳 Docker-ready for scalable deployments
+
+---
+
+## 🧱 Architecture Overview
+```bash
+scalable-chat/
+├── apps/
+│ ├── web/ # Frontend (Next.js)
+│ ├── server/ # Backend (Socket.IO + Kafka)
+├── packages/
+│ ├── ui/ # Shared components
+│ └── config/ # Shared TypeScript & ESLint configs
+└── turbo.json # Turborepo config
 ```
 
-## What's inside?
+### 🔄 Message Lifecycle
 
-This Turborepo includes the following packages/apps:
+Frontend → WebSocket → Redis PubSub → Kafka → DB (PostgreSQL)
+↘
+All clients via WebSocket
 
-### Apps and Packages
+---
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## ⚙️ Tech Stack
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+### 🖥️ Frontend
 
-### Utilities
+| Tech        | Description                      |
+|-------------|----------------------------------|
+| ![next](https://img.shields.io/badge/-Next.js-black?logo=next.js) | App Router based frontend |
+| ![react](https://img.shields.io/badge/-React-61DAFB?logo=react)   | Component-based UI         |
+| ![tailwind](https://img.shields.io/badge/-TailwindCSS-38B2AC?logo=tailwindcss) | Utility-first styling      |
+| ![ts](https://img.shields.io/badge/-TypeScript-3178C6?logo=typescript) | Strict typing              |
 
-This Turborepo has some additional tools already setup for you:
+### 🧠 Backend
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+| Tech        | Description                       |
+|-------------|-----------------------------------|
+| ![node](https://img.shields.io/badge/-Node.js-339933?logo=nodedotjs)     | Core runtime            |
+| ![socketio](https://img.shields.io/badge/-Socket.IO-black?logo=socket.io) | Real-time communication |
+| ![redis](https://img.shields.io/badge/-Redis-DC382D?logo=redis)         | Pub/Sub messaging       |
+| ![kafka](https://img.shields.io/badge/-KafkaJS-231F20?logo=apachekafka) | Event streaming         |
+| ![postgres](https://img.shields.io/badge/-PostgreSQL-336791?logo=postgresql) | Persistent storage   |
+| ![prisma](https://img.shields.io/badge/-Prisma-2D3748?logo=prisma)     | ORM                     |
 
-### Build
+---
 
-To build all apps and packages, run the following command:
+## 🚀 Getting Started
 
+### ✅ Prerequisites
+
+- Node.js v18+
+- Yarn v1.22+
+- PostgreSQL
+- Redis
+- Apache Kafka
+
+---
+
+## 🛠️ Installation
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/anishvkalbhor/scalable-chat.git
+cd scalable-chat
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
-
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+2️⃣ Install Dependencies
+```bash
+yarn install
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+3️⃣ Configure Environment Variables
+```bash
+Create .env in apps/server/:
 
+.env
+# PostgreSQL
+DATABASE_URL="postgresql://username:password@localhost:5432/scalable_chat"
+
+# Redis
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_USERNAME=default
+REDIS_PASSWORD=your_redis_password
+
+# Kafka
+KAFKA_HOST=localhost
+KAFKA_PORT=9092
+KAFKA_USERNAME=your_kafka_username
+KAFKA_PASSWORD=your_kafka_password
+
+# Server
+PORT=8000
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+4️⃣ Run Prisma Migrations
+```bash
+cd apps/server
+npx prisma migrate dev
+npx prisma generate
 ```
+5️⃣ Start Development Mode
+```bash
+yarn dev
+Frontend: http://localhost:3000
 
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
+Backend: http://localhost:8000
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+🧪 Useful Scripts
+```bash
+yarn dev          # Start all apps in dev mode
+yarn build        # Build all apps
+yarn lint         # Lint the codebase
+yarn format       # Format with Prettier
+yarn check-types  # Type-check the entire monorepo
 ```
 
-## Useful Links
 
-Learn more about the power of Turborepo:
+📄 License
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+👨‍💻 Author
+
+Built with ❤️ by Anish Kalbhor
+Happy shipping! 🚀
