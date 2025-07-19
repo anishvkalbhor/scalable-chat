@@ -8,25 +8,35 @@ export default function Page() {
   const [message, setMessage] = useState("");
 
   return (
-    <div>
-      
-      <div>
+    <div className={classes.container}>
+      <h1 className={classes.title}>💬 Scalable Chat Application</h1>
+
+      <div className={classes.chatWindow}>
+        <ul className={classes.messageList}>
+          {messages.map((msg, i) => (
+            <li key={i} className={classes.message}>
+              <span className={classes.messageText}>{msg}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className={classes.inputArea}>
         <input
+          className={classes.input}
+          placeholder="Type a message..."
+          value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className={classes["chat-input"]}
-          placeholder="Message..."
         />
         <button
-          onClick={(e) => sendMessage(message)}
-          className={classes["button"]}
+          className={classes.sendButton}
+          onClick={() => {
+            if (message.trim()) sendMessage(message);
+            setMessage("");
+          }}
         >
           Send
         </button>
-      </div>
-      <div>
-        {messages.map((e) => (
-          <li key={e}>{e}</li>
-        ))}
       </div>
     </div>
   );
