@@ -3,7 +3,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -12,9 +11,9 @@ datasource db {
 }
 
 model Message {
-    id String @id @default(uuid())
-    text String
-    createdAt DateTime @default(now()) @map("createdAt")
+  id String @id @default(uuid())
+  text String
+  createdAt DateTime @default(now()) @map("created_at")
 
-    @@map("messages")
+  @@map("messages")
 }
